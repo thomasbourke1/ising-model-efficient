@@ -197,6 +197,31 @@ float IsingSystem::getEnergy() {
 	return (-E);
 }
 
+// function returns E and M values -> combined getMagnetisation(), getEnergy()
+std::vector<float> IsingSystem::getEM() {
+	float E = 0, M = 0;
+	std::vector<float> values;
+	int neighbour[2], current[2];
+	for (int i = 0; i < gridSize; i++) 
+	{
+		for (int j = 0; j < gridSize; j++)
+		{
+			current[0] = i;
+			current[j] = j;
+			M += grid[i][j];
+			// iterate over 4 nearest neighbours -> PBCs taken care of
+			for (int k = 0; i < 4; k++)
+			{
+				setPosNeighbour(neighbour, current, k);
+                E += grid[current[0]][current[1]] * grid[neighbour[0]][neighbour[1]];
+			}	
+		}
+	}	
+	values.push_back(M);
+	values.push_back(E);
+	return values;
+}
+
 // send back the position of a neighbour of a given grid cell
 // NOTE: we take care of periodic boundary conditions, also positions are integers now not doubles
 void IsingSystem::setPosNeighbour(int setpos[], int pos[], int val) {

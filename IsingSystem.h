@@ -97,5 +97,8 @@ public:
 
 	// returns energy of grid
 	float getEnergy();
+
+	// vector to store magnetisation and energy in
+	std::vector<float> getEM();
 };
 
