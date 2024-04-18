@@ -164,17 +164,38 @@ void IsingSystem::flipSpin(int pos[]) {
 }
 
 float IsingSystem::getMagnetisation() {
-		float M = 0;
-		// iterate over whole grid
-		for (int i = 0; i < gridSize; i++)
+	float M = 0;
+	// iterate over whole grid
+	for (int i = 0; i < gridSize; i++)
+	{
+		for (int j = 0; i < gridSize; j++)
 		{
-			for (int j = 0; i < gridSize; j++)
-			{
-				M += grid[i][j];
-			}
+			M += grid[i][j];
 		}
-		return (M / (gridSize*gridSize));
 	}
+	return (M / (gridSize*gridSize));
+}
+
+// gets Energy by summing product of nearest neighbours for each particle
+float IsingSystem::getEnergy() {
+	float E = 0;
+	int neighbour[2], current[2];
+	for (int i = 0; i < gridSize; i++) 
+	{
+		for (int j = 0; j < gridSize; j++)
+		{
+			current[0] = i;
+			current[j] = j;
+			// iterate over 4 nearest neighbours -> PBCs taken care of
+			for (int k = 0; i < 4; k++)
+			{
+				setPosNeighbour(neighbour, current, k);
+                E += grid[current[0]][current[1]] * grid[neighbour[0]][neighbour[1]];
+			}	
+		}
+	}
+	return (-E);
+}
 
 // send back the position of a neighbour of a given grid cell
 // NOTE: we take care of periodic boundary conditions, also positions are integers now not doubles

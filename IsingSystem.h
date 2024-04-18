@@ -94,5 +94,8 @@ public:
 
 	// returns magnetisation of grid
 	float getMagnetisation();
+
+	// returns energy of grid
+	float getEnergy();
 };
 
