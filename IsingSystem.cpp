@@ -163,6 +163,18 @@ void IsingSystem::flipSpin(int pos[]) {
 	grid[pos[0]][pos[1]] = -grid[pos[0]][pos[1]];
 }
 
+float IsingSystem::getMagnetisation() {
+		float M = 0;
+		// iterate over whole grid
+		for (int i = 0; i < gridSize; i++)
+		{
+			for (int j = 0; i < gridSize; j++)
+			{
+				M += grid[i][j];
+			}
+		}
+		return (M / (gridSize*gridSize));
+	}
 
 // send back the position of a neighbour of a given grid cell
 // NOTE: we take care of periodic boundary conditions, also positions are integers now not doubles

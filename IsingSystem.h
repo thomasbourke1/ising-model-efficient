@@ -91,5 +91,8 @@ public:
 
 	// draws the system as squares
 	void DrawSquares();
+
+	// returns magnetisation of grid
+	float getMagnetisation();
 };
 
