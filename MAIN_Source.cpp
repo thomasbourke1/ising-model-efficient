@@ -35,6 +35,11 @@ int main(int argc, char **argv) {
 	cout << "setting seed " << seed << endl;
 	sys->setSeed(seed);
 
+	// set temperature
+	sys->inverseTemperatureBeta = 0.2;
+	cout << "beta = " << sys->inverseTemperatureBeta << endl;
+	sys->isActive = 1;
+
 	drawFuncs::introMessage();
 
 	// tell openGL how to redraw the screen and respond to the keyboard

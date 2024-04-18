@@ -30,14 +30,8 @@ private:
 				 // random number generator, class name is rnd, instance is rgen
 	rnd rgen;
 
-	// this variable is 1 if the system is running, 0 for paused
-	int isActive;
-
 	// this variable is 1 if we are in "slow" mode, 0 in fast mode
 	int slowNotFast;
-
-	// this is the inverse temperature parameter beta
-	double inverseTemperatureBeta;
 
 	// this an output file (in case we need one)
 	ofstream logfile;
@@ -94,11 +88,23 @@ public:
 
 	// returns magnetisation of grid
 	float getMagnetisation();
+	vector<float> magnetisation;
 
 	// returns energy of grid
 	float getEnergy();
+	vector<float> energy;
 
 	// vector to store magnetisation and energy in
 	std::vector<float> getEM();
+
+	// this is the inverse temperature parameter beta, moved from private
+	double inverseTemperatureBeta;
+
+	// this variable is 1 if the system is running, 0 for paused, moved from private
+	int isActive;
+
+	// iterable variables
+	int endSweep;
+	int endRun;
 };
 

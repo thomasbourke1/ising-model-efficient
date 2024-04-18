@@ -248,5 +248,9 @@ void IsingSystem::setPosNeighbour(int setpos[], int pos[], int val) {
 // this is the update function which at the moment just does one mc sweep
 void IsingSystem::Update() {
 	MCsweep();
+	vector<float> values;
+	values = getEM();
+	magnetisation.push_back(values[0]);
+	energy.push_back(values[1]);
 }
 
